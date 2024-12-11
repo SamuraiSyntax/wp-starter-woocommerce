@@ -1,0 +1,78 @@
+@use "sass:map";
+@use "sass:color";
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.form-group {
+  margin-bottom: map.get($spacing, "md");
+}
+
+.form-label {
+  display: block;
+  margin-bottom: map.get($spacing, "xs");
+  font-weight: 500;
+  color: map.get($colors, "gray", 800);
+}
+
+.form-control {
+  @include form-control;
+
+  &.is-invalid {
+    border-color: map.get($colors, "error");
+
+    &:focus {
+      box-shadow: 0 0 0 3px
+        color.adjust(map.get($colors, "error"), $alpha: -0.85);
+    }
+  }
+
+  &.is-valid {
+    border-color: map.get($colors, "success");
+
+    &:focus {
+      box-shadow: 0 0 0 3px
+        color.adjust(map.get($colors, "success"), $alpha: -0.85);
+    }
+  }
+}
+
+.form-text {
+  display: block;
+  margin-top: map.get($spacing, "xs");
+  font-size: map.get($font-sizes, "sm");
+  color: map.get($colors, "gray", 600);
+}
+
+.form-error {
+  display: block;
+  margin-top: map.get($spacing, "xs");
+  font-size: map.get($font-sizes, "sm");
+  color: map.get($colors, "error");
+}
+
+// Checkbox et Radio
+.form-check {
+  display: flex;
+  align-items: center;
+  margin-bottom: map.get($spacing, "xs");
+
+  input[type="checkbox"],
+  input[type="radio"] {
+    margin-right: map.get($spacing, "xs");
+  }
+
+  label {
+    font-size: map.get($font-sizes, "base");
+    color: map.get($colors, "gray", 800);
+  }
+}
+
+// Select
+select.form-control {
+  padding-right: map.get($spacing, "xl");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='4'%3E%3Cpath d='M0 0h8L4 4z' fill='%23333'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right map.get($spacing, "md") center;
+  background-size: 8px 4px;
+  appearance: none;
+}

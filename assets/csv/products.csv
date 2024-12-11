@@ -1,0 +1,6 @@
+ID,Type,SKU,Name,Published,Featured,Description,Short description,Price,Regular price,Categories,Images
+,simple,TSHIRT-01,T-shirt Classique Blanc,1,0,"T-shirt classique en coton bio. Coupe régulière, col rond, manches courtes.","T-shirt basique blanc en coton bio.",29.99,29.99,"Vêtements,T-shirts",https://picsum.photos/800/800
+,simple,TSHIRT-02,T-shirt Premium Noir,1,1,"T-shirt premium en coton peigné. Coupe ajustée, finitions soignées, étiquette tissée.","T-shirt noir haut de gamme.",39.99,39.99,"Vêtements,T-shirts",https://picsum.photos/800/801
+,simple,JEAN-01,Jean Slim Bleu,1,0,"Jean slim en denim stretch. Taille moyenne, 5 poches, fermeture zip.","Jean slim confortable.",69.99,79.99,"Vêtements,Jeans",https://picsum.photos/800/802
+,simple,SAC-01,Sac à Main Cuir,1,1,"Sac à main en cuir véritable. Finitions soignées, doublure textile, poche intérieure.","Sac élégant en cuir.",129.99,149.99,"Accessoires,Sacs",https://picsum.photos/800/803
+,simple,MONTRE-01,Montre Classique,1,0,"Montre analogique avec bracelet en cuir. Mouvement quartz, étanche 3ATM.","Montre élégante et fonctionnelle.",89.99,99.99,"Accessoires,Montres",https://picsum.photos/800/804

@@ -1,0 +1,154 @@
+@use "sass:map";
+@use "sass:color";
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.woocommerce-account {
+  // Navigation du compte
+  .woocommerce-MyAccount-navigation {
+    margin-bottom: map.get($spacing, "xl");
+
+    @include breakpoint("md") {
+      float: left;
+      width: 25%;
+      padding-right: map.get($spacing, "lg");
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      border: 1px solid map.get($colors, "gray", 200);
+      border-radius: map.get($border-radius, "md");
+      overflow: hidden;
+    }
+
+    li {
+      margin: 0;
+      border-bottom: 1px solid map.get($colors, "gray", 200);
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &.is-active a {
+        background-color: map.get($colors, "primary");
+        color: white;
+      }
+    }
+
+    a {
+      display: block;
+      padding: map.get($spacing, "md");
+      color: map.get($colors, "gray", 800);
+      text-decoration: none;
+      transition: $transition-base;
+
+      &:hover {
+        background-color: map.get($colors, "gray", 100);
+        color: map.get($colors, "primary");
+      }
+    }
+  }
+
+  // Contenu du compte
+  .woocommerce-MyAccount-content {
+    @include breakpoint("md") {
+      float: right;
+      width: 75%;
+      padding-left: map.get($spacing, "lg");
+    }
+
+    // Tableau des commandes
+    .woocommerce-orders-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: map.get($spacing, "lg");
+
+      th,
+      td {
+        padding: map.get($spacing, "md");
+        border: 1px solid map.get($colors, "gray", 200);
+        text-align: left;
+      }
+
+      th {
+        background-color: map.get($colors, "gray", 100);
+        font-weight: 600;
+      }
+    }
+
+    // Formulaires du compte
+    .woocommerce-EditAccountForm,
+    .woocommerce-address-fields {
+      max-width: 600px;
+
+      .form-row {
+        margin-bottom: map.get($spacing, "md");
+      }
+
+      label {
+        display: block;
+        margin-bottom: map.get($spacing, "xs");
+        font-weight: 500;
+      }
+
+      input,
+      textarea {
+        @include form-control;
+      }
+
+      button {
+        @include button-base;
+        background-color: map.get($colors, "primary");
+        color: white;
+
+        &:hover {
+          background-color: color.adjust(
+            map.get($colors, "primary"),
+            $lightness: -10%
+          );
+        }
+      }
+    }
+  }
+
+  // Messages
+  .woocommerce-message {
+    margin-bottom: map.get($spacing, "lg");
+    padding: map.get($spacing, "md");
+    background-color: color.adjust(
+      map.get($colors, "success"),
+      $lightness: 45%
+    );
+    border-left: 4px solid map.get($colors, "success");
+    border-radius: map.get($border-radius, "sm");
+  }
+
+  // Tableau de bord
+  .dashboard {
+    .welcome-message {
+      margin-bottom: map.get($spacing, "lg");
+      font-size: map.get($font-sizes, "xl");
+    }
+
+    .account-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: map.get($spacing, "lg");
+      margin-bottom: map.get($spacing, "xl");
+
+      .info-box {
+        padding: map.get($spacing, "lg");
+        background-color: white;
+        border-radius: map.get($border-radius, "md");
+        box-shadow: map.get($shadows, "sm");
+
+        h3 {
+          margin-bottom: map.get($spacing, "md");
+          color: map.get($colors, "gray", 800);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,88 @@
+@use "sass:map";
+@use "sass:color";
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.site-footer {
+  background-color: map.get($colors, "gray", 900);
+  color: white;
+  padding: map.get($spacing, "xl") 0;
+
+  .footer-container {
+    @include container;
+  }
+
+  .footer-widgets {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: map.get($spacing, "xl");
+    margin-bottom: map.get($spacing, "xl");
+
+    .widget {
+      .widget-title {
+        color: white;
+        font-size: map.get($font-sizes, "lg");
+        margin-bottom: map.get($spacing, "md");
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          margin-bottom: map.get($spacing, "sm");
+
+          a {
+            color: map.get($colors, "gray", 300);
+            text-decoration: none;
+            transition: $transition-base;
+
+            &:hover {
+              color: white;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: map.get($spacing, "lg");
+    border-top: 1px solid map.get($colors, "gray", 800);
+
+    .copyright {
+      color: map.get($colors, "gray", 400);
+      font-size: map.get($font-sizes, "sm");
+    }
+
+    .footer-menu {
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+          margin-left: map.get($spacing, "md");
+
+          a {
+            color: map.get($colors, "gray", 400);
+            text-decoration: none;
+            font-size: map.get($font-sizes, "sm");
+            transition: $transition-base;
+
+            &:hover {
+              color: white;
+            }
+          }
+        }
+      }
+    }
+  }
+}

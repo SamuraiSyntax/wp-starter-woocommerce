@@ -1,0 +1,116 @@
+@use "sass:color";
+
+.woocommerce-cart {
+  // Mini cart
+  .mini-cart-content {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 300px;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    z-index: 100;
+    padding: 15px;
+    border-radius: 4px;
+  }
+
+  // Cart page
+  .woocommerce-cart-form {
+    .shop_table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 30px;
+
+      th,
+      td {
+        padding: 15px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .product-remove {
+        width: 30px;
+
+        a {
+          color: #e74c3c;
+          font-size: 20px;
+
+          &:hover {
+            color: color.adjust(#e74c3c, $lightness: -10%);
+          }
+        }
+      }
+
+      .product-thumbnail {
+        width: 80px;
+
+        img {
+          width: 60px;
+          height: auto;
+        }
+      }
+
+      .quantity {
+        input {
+          width: 70px;
+          padding: 5px;
+          border: 1px solid #ddd;
+          border-radius: 4px;
+        }
+      }
+    }
+
+    .actions {
+      padding: 20px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .coupon {
+        display: flex;
+        gap: 10px;
+      }
+    }
+  }
+
+  .cart-collaterals {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 4px;
+
+    .cart_totals {
+      h2 {
+        font-size: 1.4em;
+        margin-bottom: 20px;
+      }
+
+      table {
+        width: 100%;
+
+        th,
+        td {
+          padding: 10px 0;
+        }
+      }
+
+      .wc-proceed-to-checkout {
+        margin-top: 20px;
+
+        .checkout-button {
+          width: 100%;
+          text-align: center;
+          padding: 15px;
+          background: #2ecc71;
+          color: #fff;
+          border-radius: 4px;
+          text-transform: uppercase;
+          font-weight: bold;
+
+          &:hover {
+            background: color.adjust(#2ecc71, $lightness: -10%);
+          }
+        }
+      }
+    }
+  }
+}

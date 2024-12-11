@@ -1,0 +1,144 @@
+@use "sass:map";
+@use "sass:math";
+@use "sass:color";
+@use "variables" as *;
+
+// Breakpoints
+@mixin breakpoint($breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    $value: map.get($breakpoints, $breakpoint);
+    @media (min-width: $value) {
+      @content;
+    }
+  }
+}
+
+// Flexbox
+@mixin flex(
+  $direction: row,
+  $justify: flex-start,
+  $align: stretch,
+  $wrap: nowrap
+) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+}
+
+// Grid
+@mixin grid($columns: 1, $gap: map.get($spacing, "md")) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  gap: $gap;
+}
+
+// Typography
+@mixin font-size($size) {
+  font-size: map.get($font-sizes, $size);
+  line-height: 1.5;
+}
+
+// Container
+@mixin container {
+  width: 100%;
+  max-width: $container-max-width;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: $container-padding;
+  padding-left: $container-padding;
+}
+
+// Button base
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: map.get($spacing, "sm") map.get($spacing, "md");
+  font-size: map.get($font-sizes, "base");
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: map.get($border-radius, "md");
+  cursor: pointer;
+  transition: $transition-base;
+
+  &:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+}
+
+@mixin button-variant($background, $color: white) {
+  background-color: $background;
+  color: $color;
+
+  &:hover {
+    background-color: color.adjust($background, $lightness: -10%);
+  }
+
+  &:active {
+    background-color: color.adjust($background, $lightness: -15%);
+  }
+}
+
+// Cards
+@mixin card {
+  background: white;
+  border-radius: map.get($border-radius, "md");
+  box-shadow: map.get($shadows, "sm");
+  padding: map.get($spacing, "md");
+}
+
+// Forms
+@mixin form-control {
+  width: 100%;
+  padding: map.get($spacing, "sm") map.get($spacing, "md");
+  border: 1px solid map.get($colors, "gray", 300);
+  border-radius: map.get($border-radius, "md");
+  background-color: white;
+  transition: $transition-base;
+
+  &:focus {
+    outline: none;
+    border-color: map.get($colors, "primary");
+    box-shadow: 0 0 0 3px
+      color.adjust(map.get($colors, "primary"), $alpha: -0.85);
+  }
+
+  &::placeholder {
+    color: map.get($colors, "gray", 400);
+  }
+}
+
+// Truncate
+@mixin truncate($lines: 1) {
+  @if $lines == 1 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+// Aspect Ratio
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  padding-bottom: percentage($height / $width);
+
+  > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}

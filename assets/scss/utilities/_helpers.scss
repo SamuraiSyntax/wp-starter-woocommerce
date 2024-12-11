@@ -1,0 +1,130 @@
+@use "sass:map";
+@use "sass:meta";
+@use "../variables" as *;
+
+// Visibilité
+.hidden {
+  display: none !important;
+}
+
+.visible {
+  display: block !important;
+}
+
+// Espacement
+@each $key, $value in $spacing {
+  .mt-#{$key} {
+    margin-top: $value !important;
+  }
+  .mb-#{$key} {
+    margin-bottom: $value !important;
+  }
+  .ml-#{$key} {
+    margin-left: $value !important;
+  }
+  .mr-#{$key} {
+    margin-right: $value !important;
+  }
+  .pt-#{$key} {
+    padding-top: $value !important;
+  }
+  .pb-#{$key} {
+    padding-bottom: $value !important;
+  }
+  .pl-#{$key} {
+    padding-left: $value !important;
+  }
+  .pr-#{$key} {
+    padding-right: $value !important;
+  }
+}
+
+// Texte
+.text-center {
+  text-align: center !important;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+// Flexbox
+.d-flex {
+  display: flex !important;
+}
+
+.flex-column {
+  flex-direction: column !important;
+}
+
+.justify-content-center {
+  justify-content: center !important;
+}
+
+.justify-content-between {
+  justify-content: space-between !important;
+}
+
+.align-items-center {
+  align-items: center !important;
+}
+
+// Position
+.position-relative {
+  position: relative !important;
+}
+
+.position-absolute {
+  position: absolute !important;
+}
+
+// Couleurs de texte
+@each $name, $value in $colors {
+  @if meta.type-of($value) == "map" {
+    @each $shade, $color in $value {
+      .text-#{$name}-#{$shade} {
+        color: $color !important;
+      }
+    }
+  } @else {
+    .text-#{$name} {
+      color: $value !important;
+    }
+  }
+}
+
+// Arrière-plans
+@each $name, $value in $colors {
+  @if meta.type-of($value) == "map" {
+    @each $shade, $color in $value {
+      .bg-#{$name}-#{$shade} {
+        background-color: $color !important;
+      }
+    }
+  } @else {
+    .bg-#{$name} {
+      background-color: $value !important;
+    }
+  }
+}
+
+// Bordures
+.rounded {
+  border-radius: map.get($border-radius, "md") !important;
+}
+
+.rounded-sm {
+  border-radius: map.get($border-radius, "sm") !important;
+}
+
+.rounded-lg {
+  border-radius: map.get($border-radius, "lg") !important;
+}
+
+.rounded-full {
+  border-radius: map.get($border-radius, "full") !important;
+}

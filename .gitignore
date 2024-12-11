@@ -1,0 +1,58 @@
+# Dependencies
+/node_modules
+/vendor
+
+# Editor files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# GitHub
+.github/
+
+# Node configuration
+.npmrc
+.nvmrc
+
+# Compiled files
+/assets/css/*.map
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# WordPress specific
+*.php-cs-fixer.cache
+.phpcs.cache
+phpcs.xml
+phpunit.xml
+wp-cli.local.yml
+
+# Backup files
+*.bak
+*.swp
+*~
+
+# Fichiers compilés CSS
+/assets/css/*
+!assets/css/.gitkeep
+
+# Fichiers de cache WordPress
+*.php_cs.cache
+.phpunit.result.cache
+
+# Fichiers de build
+/dist
+/build 

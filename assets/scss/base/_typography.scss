@@ -1,0 +1,84 @@
+@use "sass:map";
+@use "sass:color";
+@use "../variables" as *;
+
+body {
+  font-family: $font-family-base;
+  font-size: map.get($font-sizes, "base");
+  line-height: 1.6;
+  color: map.get($colors, "dark");
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-family-heading;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: map.get($spacing, "md");
+}
+
+h1 {
+  font-size: map.get($font-sizes, "4xl");
+}
+
+h2 {
+  font-size: map.get($font-sizes, "3xl");
+}
+
+h3 {
+  font-size: map.get($font-sizes, "2xl");
+}
+
+h4 {
+  font-size: map.get($font-sizes, "xl");
+}
+
+h5 {
+  font-size: map.get($font-sizes, "lg");
+}
+
+h6 {
+  font-size: map.get($font-sizes, "base");
+}
+
+p {
+  margin-bottom: map.get($spacing, "md");
+}
+
+a {
+  color: map.get($colors, "primary");
+  text-decoration: none;
+  transition: color $transition-base;
+
+  &:hover {
+    color: color.adjust(map.get($colors, "primary"), $lightness: -10%);
+  }
+}
+
+ul,
+ol {
+  margin-bottom: map.get($spacing, "md");
+  padding-left: map.get($spacing, "lg");
+}
+
+li {
+  margin-bottom: map.get($spacing, "xs");
+}
+
+blockquote {
+  margin: 0 0 map.get($spacing, "md");
+  padding: map.get($spacing, "md");
+  background-color: map.get($colors, "gray", 100);
+  border-left: 4px solid map.get($colors, "primary");
+}
+
+code {
+  font-family: monospace;
+  background-color: map.get($colors, "gray", 100);
+  padding: 0.2em 0.4em;
+  border-radius: map.get($border-radius, "sm");
+}

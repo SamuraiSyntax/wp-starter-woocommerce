@@ -1,0 +1,42 @@
+@use "sass:map";
+@use "sass:math";
+@use "sass:color";
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.container {
+  @include container;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  $gutter: $grid-gutter; // Accès direct à la variable
+  margin-right: calc(-1 * #{$gutter});
+  margin-left: calc(-1 * #{$gutter});
+}
+
+.col {
+  position: relative;
+  width: 100%;
+  padding-right: $grid-gutter; // Accès direct
+  padding-left: $grid-gutter; // Accès direct
+}
+
+@each $breakpoint, $value in $breakpoints {
+  @include breakpoint($breakpoint) {
+    .col-#{$breakpoint}-auto {
+      flex: 0 0 auto;
+      width: auto;
+      max-width: 100%;
+    }
+
+    @for $i from 1 through $grid-columns {
+      .col-#{$breakpoint}-#{$i} {
+        $width: math.percentage(math.div($i, $grid-columns));
+        flex: 0 0 $width;
+        max-width: $width;
+      }
+    }
+  }
+}

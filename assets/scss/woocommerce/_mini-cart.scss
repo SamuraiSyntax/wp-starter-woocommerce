@@ -1,0 +1,203 @@
+@use "sass:map";
+@use "sass:color";
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.mini-cart {
+  position: relative;
+
+  .cart-contents {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    color: map.get($colors, "gray", 800);
+    text-decoration: none;
+
+    &:hover {
+      color: map.get($colors, "primary");
+    }
+
+    .count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 5px;
+      background-color: map.get($colors, "primary");
+      color: white;
+      font-size: map.get($font-sizes, "xs");
+      border-radius: 9px;
+    }
+  }
+
+  .mini-cart-content {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 320px;
+    background: white;
+    border-radius: map.get($border-radius, "md");
+    box-shadow: map.get($shadows, "lg");
+    z-index: map.get($z-index, "dropdown");
+    display: none;
+    padding: map.get($spacing, "md");
+
+    .mini-cart-items {
+      max-height: 400px;
+      overflow-y: auto;
+
+      &::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: map.get($colors, "gray", 100);
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: map.get($colors, "gray", 300);
+        border-radius: 3px;
+      }
+    }
+
+    .mini-cart-item {
+      display: flex;
+      align-items: center;
+      padding: map.get($spacing, "sm");
+      border-bottom: 1px solid map.get($colors, "gray", 200);
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        margin-right: map.get($spacing, "sm");
+        border-radius: map.get($border-radius, "sm");
+      }
+
+      .item-details {
+        flex: 1;
+
+        .item-name {
+          display: block;
+          color: map.get($colors, "gray", 800);
+          font-weight: 500;
+          margin-bottom: map.get($spacing, "xs");
+          text-decoration: none;
+
+          &:hover {
+            color: map.get($colors, "primary");
+          }
+        }
+
+        .item-price {
+          color: map.get($colors, "gray", 600);
+          font-size: map.get($font-sizes, "sm");
+        }
+      }
+
+      .remove {
+        color: map.get($colors, "error");
+        font-size: map.get($font-sizes, "lg");
+        opacity: 0.5;
+        transition: $transition-base;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+
+    .mini-cart-subtotal {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: map.get($spacing, "md");
+      border-top: 1px solid map.get($colors, "gray", 200);
+      margin-top: map.get($spacing, "sm");
+
+      .subtotal-label {
+        font-weight: 600;
+        color: map.get($colors, "gray", 800);
+      }
+
+      .subtotal-amount {
+        color: map.get($colors, "primary");
+        font-weight: 600;
+      }
+    }
+
+    .mini-cart-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: map.get($spacing, "sm");
+      margin-top: map.get($spacing, "md");
+
+      .button {
+        text-align: center;
+        padding: map.get($spacing, "sm") map.get($spacing, "md");
+        border-radius: map.get($border-radius, "sm");
+        font-weight: 500;
+        transition: $transition-base;
+
+        &.view-cart {
+          background-color: map.get($colors, "gray", 100);
+          color: map.get($colors, "gray", 800);
+
+          &:hover {
+            background-color: map.get($colors, "gray", 200);
+          }
+        }
+
+        &.checkout {
+          background-color: map.get($colors, "primary");
+          color: white;
+
+          &:hover {
+            background-color: color.adjust(
+              map.get($colors, "primary"),
+              $lightness: -10%
+            );
+          }
+        }
+      }
+    }
+  }
+
+  // État vide
+  .mini-cart-empty {
+    padding: map.get($spacing, "lg");
+    text-align: center;
+    color: map.get($colors, "gray", 600);
+
+    .empty-icon {
+      font-size: map.get($font-sizes, "3xl");
+      margin-bottom: map.get($spacing, "md");
+      opacity: 0.5;
+    }
+
+    .empty-text {
+      margin-bottom: map.get($spacing, "md");
+    }
+
+    .return-shop {
+      @include button-base;
+      background-color: map.get($colors, "primary");
+      color: white;
+
+      &:hover {
+        background-color: color.adjust(
+          map.get($colors, "primary"),
+          $lightness: -10%
+        );
+      }
+    }
+  }
+}

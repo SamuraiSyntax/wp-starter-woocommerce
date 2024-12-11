@@ -1,0 +1,179 @@
+@use "sass:color";
+
+// Grille des produits
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  .product {
+    position: relative;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+      transform: translateY(-5px);
+
+      .product-actions {
+        opacity: 1;
+      }
+    }
+
+    // Image produit
+    .woocommerce-loop-product__link {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+
+      img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+    }
+
+    // Titre et prix
+    .woocommerce-loop-product__title {
+      padding: 15px;
+      margin: 0;
+      font-size: 1.1em;
+      color: #333;
+    }
+
+    .price {
+      padding: 0 15px;
+      color: #2ecc71;
+      font-weight: bold;
+      font-size: 1.2em;
+
+      del {
+        color: #999;
+        font-size: 0.9em;
+        margin-right: 8px;
+      }
+
+      ins {
+        text-decoration: none;
+      }
+    }
+
+    // Actions (bouton ajouter au panier, etc.)
+    .product-actions {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.9);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+
+      .button {
+        width: 100%;
+        padding: 10px;
+        text-align: center;
+        background: #3498db;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-transform: uppercase;
+        font-size: 0.9em;
+        font-weight: bold;
+
+        &:hover {
+          background: color.adjust(#3498db, $lightness: -10%);
+        }
+
+        &.loading {
+          opacity: 0.7;
+          pointer-events: none;
+        }
+
+        &.added {
+          background: #2ecc71;
+        }
+      }
+    }
+
+    // Badge promo
+    .onsale {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: #e74c3c;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 3px;
+      font-size: 0.8em;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+  }
+}
+
+// Filtres
+.woo-filter-form {
+  margin-bottom: 30px;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+
+  .filters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  .filter-group {
+    h4 {
+      margin: 0 0 10px;
+      font-size: 1em;
+    }
+
+    .price-slider {
+      margin: 15px 0;
+    }
+
+    .checkbox-group {
+      max-height: 200px;
+      overflow-y: auto;
+      padding-right: 10px;
+
+      label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 8px;
+        cursor: pointer;
+
+        &:hover {
+          color: #3498db;
+        }
+      }
+    }
+  }
+
+  .filter-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .reset-filters {
+      color: #999;
+      text-decoration: underline;
+      cursor: pointer;
+
+      &:hover {
+        color: #666;
+      }
+    }
+  }
+}

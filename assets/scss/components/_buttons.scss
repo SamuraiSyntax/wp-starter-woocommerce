@@ -1,0 +1,97 @@
+@use "sass:map";
+@use "sass:color";
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.button,
+button,
+input[type="submit"],
+input[type="button"] {
+  background-color: map.get($colors, "primary");
+  color: white;
+  @include button-base;
+
+  &:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+
+  &:hover {
+    background-color: color.adjust(
+      map.get($colors, "primary"),
+      $lightness: -10%
+    );
+  }
+
+  // Variantes de couleur
+  &.button-secondary {
+    background-color: map.get($colors, "secondary");
+
+    &:hover {
+      background-color: color.adjust(
+        map.get($colors, "secondary"),
+        $lightness: -10%
+      );
+    }
+  }
+
+  &.button-accent {
+    background-color: map.get($colors, "accent");
+
+    &:hover {
+      background-color: color.adjust(
+        map.get($colors, "accent"),
+        $lightness: -10%
+      );
+    }
+  }
+
+  // Variantes de taille
+  &.button-sm {
+    padding: map.get($spacing, "xs") map.get($spacing, "sm");
+    font-size: map.get($font-sizes, "sm");
+  }
+
+  &.button-lg {
+    padding: map.get($spacing, "md") map.get($spacing, "lg");
+    font-size: map.get($font-sizes, "lg");
+  }
+
+  // Variante outline
+  &.button-outline {
+    background-color: transparent;
+    border: 2px solid currentColor;
+    color: map.get($colors, "primary");
+
+    &:hover {
+      background-color: map.get($colors, "primary");
+      color: white;
+    }
+  }
+
+  // Loading state
+  &.loading {
+    position: relative;
+    color: transparent;
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 1em;
+      height: 1em;
+      border: 2px solid white;
+      border-radius: 50%;
+      border-right-color: transparent;
+      animation: button-loading 0.75s infinite linear;
+    }
+  }
+}
+
+@keyframes button-loading {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,91 @@
+@use "sass:map";
+@use "sass:color";
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.loader {
+  display: inline-block;
+  position: relative;
+  width: 40px;
+  height: 40px;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 3px solid map.get($colors, "gray", 200);
+    border-top-color: map.get($colors, "primary");
+    animation: loader-spin 1s infinite linear;
+  }
+
+  &.loader-sm {
+    width: 24px;
+    height: 24px;
+  }
+
+  &.loader-lg {
+    width: 64px;
+    height: 64px;
+  }
+
+  &.loader-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(white, 0.8);
+    z-index: map.get($z-index, "modal");
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@keyframes loader-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// État de chargement pour les conteneurs
+.loading {
+  position: relative;
+  min-height: 100px;
+  pointer-events: none;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(white, 0.7);
+    z-index: 1;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid map.get($colors, "gray", 200);
+    border-top-color: map.get($colors, "primary");
+    animation: loader-spin 1s infinite linear;
+    z-index: 2;
+  }
+}

@@ -1,0 +1,78 @@
+@use "sass:map";
+@use "sass:color";
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.notification {
+  position: fixed;
+  bottom: map.get($spacing, "lg");
+  right: map.get($spacing, "lg");
+  padding: map.get($spacing, "md") map.get($spacing, "lg");
+  border-radius: map.get($border-radius, "md");
+  background: white;
+  box-shadow: map.get($shadows, "lg");
+  z-index: map.get($z-index, "tooltip");
+  animation: notification-slide-in 0.3s ease-out;
+
+  &.notification-success {
+    background-color: color.adjust(
+      map.get($colors, "success"),
+      $lightness: 45%
+    );
+    border-left: 4px solid map.get($colors, "success");
+  }
+
+  &.notification-error {
+    background-color: color.adjust(map.get($colors, "error"), $lightness: 45%);
+    border-left: 4px solid map.get($colors, "error");
+  }
+
+  &.notification-warning {
+    background-color: color.adjust(
+      map.get($colors, "warning"),
+      $lightness: 45%
+    );
+    border-left: 4px solid map.get($colors, "warning");
+  }
+
+  &.notification-info {
+    background-color: color.adjust(
+      map.get($colors, "primary"),
+      $lightness: 45%
+    );
+    border-left: 4px solid map.get($colors, "primary");
+  }
+
+  .notification-title {
+    font-weight: 600;
+    margin-bottom: map.get($spacing, "xs");
+  }
+
+  .notification-message {
+    font-size: map.get($font-sizes, "sm");
+  }
+
+  .notification-close {
+    position: absolute;
+    top: map.get($spacing, "xs");
+    right: map.get($spacing, "xs");
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity $transition-base;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+@keyframes notification-slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
